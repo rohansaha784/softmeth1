@@ -23,8 +23,8 @@
                            <children>
                               <TableView prefHeight="294.4" prefWidth="173.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="135.2000029683113" text="Song" />
-                                  <TableColumn prefWidth="140.80003356933594" text="Artist" />
+                                  <TableColumn fx:id="SongList" prefWidth="135.2000029683113" text="Song" />
+                                  <TableColumn fx:id="ArtistList" prefWidth="140.80003356933594" text="Artist" />
                                 </columns>
                               </TableView>
                            </children>
@@ -57,13 +57,13 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="Song" />
-                                    <Label text="Counting Star" GridPane.columnIndex="1" />
+                                    <Label fx:id="songDetail" text="Counting Star" GridPane.columnIndex="1" />
                                     <Label text="Artist" GridPane.rowIndex="1" />
-                                    <Label text="OneRepublic" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="artistDetail" text="OneRepublic" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="Year of Release" GridPane.rowIndex="2" />
                                     <Label text="album" GridPane.rowIndex="3" />
-                                    <Label text="2013" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="Native" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="yearDetail" text="2013" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="albumDetail" text="Native" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                            </children>
@@ -71,10 +71,10 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="52.0" prefWidth="657.0">
                            <children>
                               <Button layoutX="553.0" layoutY="68.0" mnemonicParsing="false" onAction="#addMusic" prefHeight="55.0" prefWidth="74.0" text="Add" />
-                              <TextField layoutX="350.0" layoutY="47.0" onAction="#newYear" />
-                              <TextField layoutX="350.0" layoutY="123.0" onAction="#newAlbum" />
-                              <TextField layoutX="90.0" layoutY="47.0" onAction="#newSong" />
-                              <TextField layoutX="90.0" layoutY="123.0" onAction="#newArtist" />
+                              <TextField fx:id="newYear" layoutX="350.0" layoutY="47.0" onAction="#newYear" />
+                              <TextField fx:id="newAlbum" layoutX="350.0" layoutY="123.0" onAction="#newAlbum" />
+                              <TextField fx:id="newSong" layoutX="90.0" layoutY="47.0" onAction="#newSong" />
+                              <TextField fx:id="newArtist" layoutX="90.0" layoutY="123.0" onAction="#newArtist" />
                               <Label layoutX="26.0" layoutY="51.0" text="Song" />
                               <Label layoutX="26.0" layoutY="127.0" text="Artist" />
                               <Label layoutX="289.0" layoutY="51.0" text="Year" />
