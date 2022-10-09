@@ -15,8 +15,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,26 +57,69 @@ public class Controller implements Initializable{
 	private Label albumLabel;
 	@FXML 
 	private Label yearLabel;
+	@FXML
+	private Label signLabel;
+	@FXML
+	private Label signLabel2;
 	String selected;
-	String[] data = {"1","2","3","4"};
+	ArrayList<Song> songs = new ArrayList<Song>();
+	ObservableList<String> list1= FXCollections.observableArrayList();
+	public void setSongs() {
+		File file = new File("C:\\Users\\wangz\\eclipse-workspace\\pj1\\src\\application\\a.txt");
+		FileReader fileReader;
+		try {
+			fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String string;
+			String[] slist;
+			try {
+				while((string=bufferedReader.readLine())!=null) {
+					slist = string.split(" ");
+					String temp = slist[0]+"\t"+slist[1];
+					list1.add(temp);
+					Song song = new Song(slist[1],slist[0],slist[2],Integer.parseInt(slist[3]));
+					songs.add(song);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void add(ActionEvent event) {
-		String string = newSong.getText();
-		String string2 = newArtist.getText();
-		String string3 = newAblum.getText();
-		String string4 = newYear.getText();
-		songLabel.setText(string);
-		artistLabel.setText(string2);
-		albumLabel.setText(string3);
-		yearLabel.setText(string4);
+		String string = newSong.getText().trim();
+		String string2 = newArtist.getText().trim();
+		String string3 = newAblum.getText().trim();
+		String string4 = newYear.getText().trim();
+		if(string==""||string2=="") {
+			signLabel.setText("Fail!");
+			tfToDefault();
+			return;
+		}
+		Song song = new Song(string2,string,string3,Integer.parseInt(string4));
+		songs.add(song);
+		list.getItems().removeAll(list1);
+		list1.add(string+"\t"+string2);
+		list.getItems().addAll(list1);
+//		songLabel.setText(string);
+//		artistLabel.setText(string2);
+//		albumLabel.setText(string3);
+//		yearLabel.setText(string4);
 		tfToDefault();
+		signLabel.setText("Success!!!");
 	}
 	public void edit(ActionEvent event) {
 		tfToDefault();
 		
 	}
+	
 	public void delete(ActionEvent event) {
 		labelToDefault();
 		tfToDefault();
+		signLabel2.setText("success!!!");
 	}
 	public void labelToDefault() {
 		songLabel.setText("");
@@ -88,13 +135,23 @@ public class Controller implements Initializable{
 	}
 	@Override
 	public void initialize(URL arg0,ResourceBundle arg1) {
-		list.getItems().addAll(data);
+		setSongs();
+		list.getItems().addAll(list1);
 		list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
 				selected = list.getSelectionModel().getSelectedItem();
-				songLabel.setText(selected);
+				String temp = selected.split("\t")[0];
+				for(int i=0;i<songs.size();i++) {
+					Song song = songs.get(i);
+					if(temp.equals(song.getSong())) {
+						songLabel.setText(temp);
+						artistLabel.setText(song.getArtist());
+						yearLabel.setText(""+song.getYear());
+						albumLabel.setText(song.getAlbum());
+					}
+				}
 			}
 		});
 	}

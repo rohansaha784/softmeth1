@@ -18,9 +18,9 @@
                <children>
                   <SplitPane dividerPositions="0.8138728323699421" layoutX="14.0" layoutY="174.0" orientation="VERTICAL" prefHeight="693.6" prefWidth="259.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="258.0">
                            <children>
-                              <ListView fx:id="list" layoutX="29.0" prefHeight="525.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ListView fx:id="list" layoutX="29.0" layoutY="38.0" prefHeight="522.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0" />
                               <Label layoutX="23.0" layoutY="14.0" text="Song" />
                               <Label layoutX="129.0" layoutY="14.0" text="Artist" />
                            </children>
@@ -28,6 +28,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
                               <Button fx:id="deleteButton" layoutX="101.0" layoutY="52.0" mnemonicParsing="false" onAction="#delete" text="delete" />
+                              <Label fx:id="signLabel2" layoutX="176.0" layoutY="24.0" prefHeight="15.0" prefWidth="64.0" />
                            </children>
                         </AnchorPane>
                     </items>
@@ -82,15 +83,15 @@
                                  <children>
                                     <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" text="add" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                                     <Button fx:id="editButton" mnemonicParsing="false" onAction="#edit" text="edit" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <Label text="Label" />
-                                    <Label text="Label" GridPane.rowIndex="1" />
-                                    <Label text="Label" GridPane.columnIndex="3" />
-                                    <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label text="new song" />
+                                    <Label text="new artist" GridPane.rowIndex="1" />
+                                    <Label text="new album" GridPane.columnIndex="3" />
+                                    <Label text="new year" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <TextArea fx:id="newSong" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                     <TextArea fx:id="newArtist" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextArea fx:id="newAblum" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
                                     <TextArea fx:id="newYear" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <Label prefHeight="15.0" prefWidth="137.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="signLabel" prefHeight="114.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
