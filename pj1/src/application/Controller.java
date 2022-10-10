@@ -112,7 +112,7 @@ public class Controller implements Initializable{
 		signLabel.setText("Success!!!");
 	}
 	public void edit(ActionEvent event) {
-		signLabel.setText("Success!!!");
+		signLabel.setText("Fail!!!");
 		
 	}
 	
