@@ -3,14 +3,19 @@ package application;
 
 import java.awt.TextField;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -135,6 +140,7 @@ public class Controller implements Initializable{
 			}
 		}
 		songs.add(song);
+		writetofile();
 		list.getItems().removeAll(list1);
 		list1.add(string+"\t"+string2);
 		FXCollections.sort(list1);
@@ -171,7 +177,8 @@ public class Controller implements Initializable{
 				song.setArtist(string2);
 				song.setSong(string);
 				song.setYear(Integer.parseInt(string4));
-				string5 = song.getSong()+"\t"+song.getArtist();
+				writetofile();
+				string5 = ""+song.getSong()+"\t"+song.getArtist();
 				break;
 			}
 		}
@@ -198,17 +205,24 @@ public class Controller implements Initializable{
 		FXCollections.sort(list1);
 		list.getItems().addAll(list1);
 		String[] temp = string.split("\t");
+		System.out.println(temp[0]);
 		for(int i =0;i<songs.size();i++) {
 			Song song = songs.get(i);
-			if(song.getSong()==temp[0]&&song.getArtist()==temp[1]) {
+			if(song.getSong().equals(temp[0])&&song.getArtist().equals(temp[1])) {
 				songs.remove(i);
+				writetofile();
+				break;
 			}
 		}
 		signLabel2.setText("Success!!!");
 		tfToDefault();
 		labelToDefault();
 	}
-	
+	public void print() {
+		for(int i =0;i<songs.size();i++) {
+			System.out.println(songs.get(i).toString());
+		}
+	}
 	public void labelToDefault() {
 		songLabel.setText("");
 		artistLabel.setText("");
@@ -264,5 +278,19 @@ public class Controller implements Initializable{
 			}
 		}
 		return true;
+	}
+	public void writetofile() {
+		Collections.sort(songs,Song.nameComparator);
+		BufferedWriter bufferedWriter;
+		try {
+			bufferedWriter = new BufferedWriter(new FileWriter("C:\\Users\\wangz\\eclipse-workspace\\pj1\\src\\application\\a.txt"));
+			for(int i =0;i<songs.size();i++) {
+				bufferedWriter.write(songs.get(i).toString()+"\n");
+			}
+			bufferedWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

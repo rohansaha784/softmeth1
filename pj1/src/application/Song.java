@@ -1,4 +1,5 @@
 package application;
+import java.util.Comparator;
 import java.util.jar.Attributes.Name;
 import javax.management.loading.PrivateClassLoader;
 public class Song {
@@ -45,7 +46,21 @@ public class Song {
 	public void setYear(int year) {
 		this.year = year;
 	}
+	@Override
 	public String toString() {
 		return song+" "+artist+" "+album+" "+year;
 	}
+	public static Comparator<Song>
+	nameComparator = new Comparator<Song>() {
+
+		@Override
+		public int compare(Song o1, Song o2) {
+			String string = o1.getSong();
+			String string2 = o2.getSong();
+			String string3 = o1.getArtist();
+			String string4 = o2.getArtist();
+			if(string.compareTo(string2)==0) return string3.compareTo(string4);
+			return string.compareTo(string2);
+		}
+	};
 }
