@@ -12,14 +12,14 @@ public class Song {
 		this.album = "NULL";
 		this.year = 0;
 	}
-	public Song(String artist,String song,String album,int year) {
+	public Song(String song,String artist,String album,int year) {
 		this.artist = artist;
 		this.album = album;
 		this.song = song;
 		this.year = year;
 	}
-	public Song(String artist,String song) {
-		this(artist, song, "", 0);
+	public Song(String song,String artist) {
+		this(song, artist, "NULL", 0);
 	}
 	public String getArtist() {
 		return artist;
@@ -44,5 +44,8 @@ public class Song {
 	}
 	public void setYear(int year) {
 		this.year = year;
+	}
+	public String toString() {
+		return song+" "+artist+" "+album+" "+year;
 	}
 }
