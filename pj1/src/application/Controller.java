@@ -22,6 +22,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -112,15 +113,18 @@ public class Controller implements Initializable{
 		signLabel.setText("Success!!!");
 	}
 	public void edit(ActionEvent event) {
-		signLabel.setText("Hello!!!");
+		tfToDefault();
 		
 	}
-	
 	public void delete(ActionEvent event) {
-		labelToDefault();
-		tfToDefault();
-		signLabel2.setText("success!!!");
+		if(list.getItems().isEmpty()) {
+			return;
+		}
+		String string = list.getSelectionModel().getSelectedItem();
+		list1.remove(string);
+		list.getItems()
 	}
+	
 	public void labelToDefault() {
 		songLabel.setText("");
 		artistLabel.setText("");
